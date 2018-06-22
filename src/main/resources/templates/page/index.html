@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<title>首页</title>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+	<link rel="stylesheet" th:href="@{/css/bootstrap.css}"></link>  
+	<link rel="stylesheet" th:href="@{/css/style.css}" />
+	<link rel="stylesheet" th:href="@{/css/main.css}" />	
+	<script type="text/javascript" th:src="@{/js/jquery.min.js}"></script>	
+	<script type="text/javascript" th:src="@{/js/bootstrap.min.js}" ></script>
+	<script type="text/javascript" th:src="@{/js/klorofil-common.js}" ></script>	
+	<style type="text/css">
+		.text-Margin{
+
+			 margin-left: 40px; 
+			 width:600px;
+			 margin-top:40px;
+		}
+	</style>
+</head>
+
+<body>
+  <div th:fragment="navbar" id="wrapper" class="wrapper"  role="navigation">
+    <div th:replace="fragments/header :: header"></div>
+    <div th:replace="fragments/left :: left"></div>
+	
+	<div class="main">
+			<!-- MAIN CONTENT -->
+			<div class="main-content">
+				<div class="text-Margin">
+					<h2>欢迎测试图书订购系统</h2>
+					<ul class="success">
+						<ol>
+							本系统主要是面向我们的广理全校师生面开发的图书订购系统，
+							具体功能描述如下：此系统面向校内师生，可提出非教材类图书的采购申请，如需采购图书则用图书馆卡号及密码登录系统，
+							并填写申购信息（包括书名、作者、出版社、条码号、定价等），管理员随时可以对申购信息审核，符合要求的确认采购数量后加入待采购清单，
+							待采购清单每周上传给财务部门一次，财务部门审核后回复付款信息（包括申购确认信息及付款二维码）
+							图书馆确认付款后，采购清单流转至采购部门，待书籍采购回来，采购部门通知图书馆，图书馆领书的同时拿发票，并发布到书清单。
+						</ol>
+					</ul>
+					
+					<table class="table">
+						<tbody>
+							<tr  class="success">
+								<td>系统管理</td>
+								<td colspan="2">
+									主要是负责管理员管理和审查相关功能
+								</td>
+							</tr>
+							
+							<tr class="success">
+								<td>订单管理</td>
+								<td colspan="2">主要是负责用户登录和下订单相关功能</td>
+							</tr>
+
+							<tr  class="success">
+								<td>财务管理</td>
+								<td colspan="2">
+									主要是负责审核订单状态
+								</td>
+							</tr>
+							
+							<tr  class="success">
+								<td>采购管理</td>
+								<td colspan="2">
+									主要是负责相关的采购操作功能实现，同时发送通知，让图书馆领书
+								</td>
+							</tr>
+							
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+		<div th:replace="fragments/footer :: copyright"></div>
+	</div>
+    
+</body>
+</html>

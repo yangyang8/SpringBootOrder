@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="utf-8" />
+		<title>用户登录</title>
+		<meta name="viewport" content="width=device-width, 
+                                     initial-scale=1.0, 
+                                     maximum-scale=1.0, 
+                                     user-scalable=no" />
+		<script type="text/javascript" th:src="@{/js/bootstrap.js}" ></script>
+		<link rel="stylesheet" th:href="@{/css/bootstrap.css}"></link>  
+		<style>
+			.formDiv{
+				width: 400px;
+	            margin-top: 400px;
+				box-shadow: 0 0 25px #cac6c6;
+				background-color:aliceblue;
+			}
+			
+			body{
+				background-color:beige;
+			}
+			
+			h2{
+				text-align: center;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="container formDiv">
+			<h2>系统登录</h2>
+			<form class="form-horizontal" method="post" action="/login.action">
+			  <div class="form-group">
+			    <label for="cardId" class="col-sm-2 control-label">卡号:</label>
+			    <div class="col-sm-10">
+			      <input type="text" name="cardId" class="form-control" id="cardId" placeholder="图书卡号" ></input>
+			    </div>
+			  </div>
+			  <div class="form-group">
+			    <label for="password" class="col-sm-2 control-label">密码:</label>
+			    <div class="col-sm-10">
+			      <input type="password" class="form-control" name="password" id="password" placeholder="密码" ></input>
+			    </div>
+			  </div>
+			  <div class="form-group">
+			    <div class="col-sm-offset-2 col-sm-10">
+			      <div class="checkbox">
+			        <label>
+			          <input type="checkbox">记住密码</input>
+			        </label>
+			      </div>
+			    </div>
+			  </div>
+			  <div class="form-group">
+			    <div class="col-sm-offset-2 col-sm-10">
+			      <button type="submit" class="btn btn-primary">登录</button>
+			    </div>
+			  </div>
+			</form>
+		</div>
+	</body>
+</html>

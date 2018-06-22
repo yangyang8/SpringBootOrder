@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:activiti="http://activiti.org/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" typeLanguage="http://www.w3.org/2001/XMLSchema" expressionLanguage="http://www.w3.org/1999/XPath" targetNamespace="http://www.activiti.org/test">
+  <process id="OrderProcess" name="订购流程开发" isExecutable="true">
+    <startEvent id="startevent1" name="Start"></startEvent>
+    <userTask id="buyer" name="老师或学生" activiti:assignee="老师或学生"></userTask>
+    <sequenceFlow id="flow1" sourceRef="startevent1" targetRef="buyer"></sequenceFlow>
+    <userTask id="admin" name="管理员" activiti:assignee="管理员"></userTask>
+    <sequenceFlow id="flow2" sourceRef="buyer" targetRef="admin"></sequenceFlow>
+    <userTask id="FinancialDepartment" name="账务部门" activiti:assignee="账务部门"></userTask>
+    <sequenceFlow id="flow3" sourceRef="admin" targetRef="FinancialDepartment"></sequenceFlow>
+    <userTask id="OrderDepartment" name="采购部门" activiti:assignee="采购部门"></userTask>
+    <sequenceFlow id="flow4" sourceRef="FinancialDepartment" targetRef="OrderDepartment"></sequenceFlow>
+    <endEvent id="endevent2" name="End"></endEvent>
+    <sequenceFlow id="flow5" sourceRef="OrderDepartment" targetRef="endevent2"></sequenceFlow>
+  </process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_OrderProcess">
+    <bpmndi:BPMNPlane bpmnElement="OrderProcess" id="BPMNPlane_OrderProcess">
+      <bpmndi:BPMNShape bpmnElement="startevent1" id="BPMNShape_startevent1">
+        <omgdc:Bounds height="35.0" width="35.0" x="340.0" y="90.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="buyer" id="BPMNShape_buyer">
+        <omgdc:Bounds height="55.0" width="105.0" x="305.0" y="210.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="admin" id="BPMNShape_admin">
+        <omgdc:Bounds height="55.0" width="105.0" x="305.0" y="290.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="FinancialDepartment" id="BPMNShape_FinancialDepartment">
+        <omgdc:Bounds height="55.0" width="105.0" x="305.0" y="400.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="OrderDepartment" id="BPMNShape_OrderDepartment">
+        <omgdc:Bounds height="55.0" width="105.0" x="305.0" y="480.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="endevent2" id="BPMNShape_endevent2">
+        <omgdc:Bounds height="35.0" width="35.0" x="340.0" y="590.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge bpmnElement="flow1" id="BPMNEdge_flow1">
+        <omgdi:waypoint x="357.0" y="125.0"></omgdi:waypoint>
+        <omgdi:waypoint x="357.0" y="210.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow2" id="BPMNEdge_flow2">
+        <omgdi:waypoint x="357.0" y="265.0"></omgdi:waypoint>
+        <omgdi:waypoint x="357.0" y="290.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow3" id="BPMNEdge_flow3">
+        <omgdi:waypoint x="357.0" y="345.0"></omgdi:waypoint>
+        <omgdi:waypoint x="357.0" y="400.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow4" id="BPMNEdge_flow4">
+        <omgdi:waypoint x="357.0" y="455.0"></omgdi:waypoint>
+        <omgdi:waypoint x="357.0" y="480.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow5" id="BPMNEdge_flow5">
+        <omgdi:waypoint x="357.0" y="535.0"></omgdi:waypoint>
+        <omgdi:waypoint x="357.0" y="590.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</definitions>

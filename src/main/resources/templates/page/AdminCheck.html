@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<title>首页</title>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+	<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"></link>  
+	<link rel="stylesheet" th:href="@{/css/style.css}" />
+	<link rel="stylesheet" th:href="@{/css/main.css}" />	
+	<link rel="stylesheet" th:href="@{/css/commons.css}" />
+	
+	<script type="text/javascript" th:src="@{/js/jquery-3.3.1.min.js}"></script>	
+	<script type="text/javascript" th:src="@{/js/bootstrap.min.js}" ></script>
+	<script type="text/javascript" th:src="@{/js/klorofil-common.js}" ></script>
+	<script type="text/javascript" th:src="@{/js/commons.js}"></script>
+	
+</head>
+
+<body>
+  <div th:fragment="navbar" id="wrapper" class="wrapper"  role="navigation">
+    <div th:replace="fragments/header :: header"></div>
+    <div th:replace="fragments/left :: left"></div>
+	
+	<div class="main">
+		 <!-- MAIN CONTENT -->
+		 <div class="main-content">
+		 		<!-- 模态框，用于管理员的审核相关的操作 -->
+				<div class="modal fade" id="adminCheck" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal" 
+										aria-hidden="true">×
+								</button>
+								<h4 class="modal-title" id="myModalLabel">
+									管理员审核
+								</h4>
+							</div>
+							<form class="form-horizontal" role="form" th:action="@{/OrderBook/updateAdminOpton.action}" method="post">
+								<div class="modal-body">
+										<!-- 书名  -->
+										<div class="form-group">
+											<label for="bookName3" class="col-sm-2 control-label">书名</label>
+											<div class="col-sm-10">
+												<input type="hidden" id="bookId3" name="bookId" />
+												<input type="text" class="form-control" id="bookName3" name="bookName" disabled="disabled"
+													   placeholder="请输入书名" />
+											</div>
+										</div>
+										
+										<!-- 价格 -->
+										<div class="form-group">
+											<label for="price" class="col-sm-2 control-label">价格</label>
+											<div class="col-sm-10">
+												<input type="text" class="form-control" id="price3" name="price" disabled="disabled"
+													   placeholder="请输入书的价格" />
+											</div>
+										</div>
+										
+										<div class="form-group">
+											<label for="number" class="col-sm-2 control-label">数量</label>
+											<div class="col-sm-10">
+												<input type="text" class="form-control" id="number3" name="number" disabled="disabled"
+													   placeholder="请输入书的数量" />
+											</div>
+										</div>
+										
+										<div class="form-group">
+											<label for="totalNumber" class="col-sm-2 control-label">总价格</label>
+											<div class="col-sm-10">
+												<input type="text" class="form-control" id="totalNumber3" name="totalNumber" disabled="disabled"
+													   placeholder="请输入书的总价格" />
+											</div>
+										</div>
+										<!-- 支付状态 -->
+										<div class="form-group">
+											<label for="payStatus" class="col-sm-2 control-label">支付状态</label>
+											<div class="col-sm-10">
+												<input type="text" th:if="${payStatus =='1'} ? '已支付':'未支付'" class="form-control" id="payStatus3" name="payStatus" disabled="disabled"
+													   placeholder="请输入书的支付状态" ></input>
+											</div>
+										</div>
+										
+										
+										<!-- 购卖人 -->
+										<div class="form-group">
+											<label for="userName1" class="col-sm-2 control-label">购卖人</label>
+											<div class="col-sm-10">
+												<input type="text" class="form-control" id="userName3" name="userName" disabled="disabled"
+													   placeholder="请输入购卖人" />
+											</div>
+										</div>
+										
+										<!-- 审核意见 -->
+										<div class="form-group">
+										    <label for="adminOpinion"  class="col-sm-2 control-label">审核意见</label>
+											<div class="col-sm-10">
+												<select id="adminOpinion" name="adminOpinion" class="form-control">
+													<option th:value="0" selected='selected'>未通过</option>
+													<option th:vlaue="1">通过</option>
+												</select>
+													
+											</div>
+										</div>
+										
+								</div>
+								<div class="modal-footer">
+									<button type="button" class="btn btn-default" 
+											data-dismiss="modal">关闭
+									</button>
+									<button type="submit" id="addOrderBookId" class="btn btn-primary">
+										提交
+									</button>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+		 	
+		 
+		 
+		 
+				<table id="table" class="table table-bordered">
+					<thead>
+						<tr>
+							<th>订单编号</th>
+							<th>图书名称</th>
+							<th>订购人</th>
+							<th>数量</th>
+							<th>价格</th>
+							<th>总价格</th>
+							<th>支付状态</th>
+							<th>审核</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="ob,stat : ${dataList}">
+							<td th:text="${stat.count}">Bangalore</td>
+							<td th:text="${ob.bookName}">Bangalore</td>
+							<td th:text="${ob.userName}">Bangalore</td>
+							<td th:text="${ob.number}">560001</td>
+							<td th:text="${ob.price}">560001</td>
+							<td th:text="${ob.totalNumber}">560001</td>
+							<td th:if="${ob.payStatus =='0'}">未支付</td>
+							<td th:if="${ob.payStatus == '1'}">已支付</td>
+							<td>
+								<!-- 模态框 --><!-- th:onclick="'javascript:toView(\''+${stat.count}+'-1'+'-'+${ob.bookId}+'\');'" -->
+								<a href="#" data-toggle="modal" th:onclick="'javascript:adminCheck(\''+${stat.count}+'---'+${ob.bookId}+'\');'"  data-target="#adminCheck" class="btn btn-primary btn-lg" role="button">审核</a>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+		 </div>
+	</div>
+	<div th:replace="fragments/footer :: copyright"></div>
+  </div> 
+</body>
+</html>

@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<title>首页</title>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+	<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"></link>  
+	<link rel="stylesheet" th:href="@{/css/style.css}" />
+	<link rel="stylesheet" th:href="@{/css/main.css}" />	
+	<link rel="stylesheet" th:href="@{/css/commons.css}" />
+	
+	<script type="text/javascript" th:src="@{/js/jquery-3.3.1.min.js}"></script>	
+	<script type="text/javascript" th:src="@{/js/bootstrap.min.js}" ></script>
+	<script type="text/javascript" th:src="@{/js/klorofil-common.js}" ></script>
+	<script type="text/javascript" th:src="@{/js/commons.js}"></script>
+	
+</head>
+
+<body>
+  <div th:fragment="navbar" id="wrapper" class="wrapper"  role="navigation">
+    <div th:replace="fragments/header :: header"></div>
+    <div th:replace="fragments/left :: left"></div>
+	
+	<div class="main">
+		 <!-- MAIN CONTENT -->
+		 <div class="main-content">
+		 		<!--th:action="@{/purchaseDepartment/exportPurchasingDepartment.action}" method="post"  -->
+		 		<form th:action="@{/purchaseDepartment/exportPurchasingDepartment.action}" method="post" >
+					<!-- 支付的模态框 
+						这里的支付模块是要收费的，所以不能直接使用这个支付功能，这个也就是只能做一个样式
+					-->
+					<div class="modal fade" id="financePay" tabindex="-1" role="dialog" aria-labelledby="information">
+					  <div class="modal-dialog">
+					    <div class="modal-content">
+					      <div class="modal-header">
+					        <button type="button" class="close" data-dismiss="modal">
+					          <span>&times;</span>
+					        </button>
+					        <h4 class="modal-title">请扫描二维码，完成支付</h4>
+					      </div>
+					      <div class="modal-body" style="text-align: center">
+					        <input type="hidden" id="bookId4" name="bookIds" />
+					        <input type="hidden" id="img4"  />
+					        <img src="" alt="QRCode" id="scan1" />
+					      </div>
+					      <div class="modal-footer">
+								<button type="button" class="btn btn-default" 
+										data-dismiss="modal">关闭
+								</button>
+								<button type="submit" class="btn btn-primary">
+									上报采购部门
+								</button>
+						  </div>
+					    </div>
+					  </div>
+					</div>
+				</form>
+		 		
+		 		
+				<table id="table" class="table table-bordered">
+				    <caption>
+				        <a th:href="@{/index.action}" class="btn btn-primary btn-lg" role="button">返回</a>
+				    	&nbsp;&nbsp;&nbsp;<a th:href="@{/OrderBook/exportOrderBook.action}" class="btn btn-primary btn-lg" role="button">导出</a>
+				    	&nbsp;&nbsp;&nbsp;<a href="" id="exportPurchasingDepartment" class="btn btn-primary btn-lg"  data-toggle="modal" data-target="#financePay" role="button">付款</a>
+				    </caption>
+					<thead>
+						<tr>
+							<th><input type="checkbox" id="allCheck" /></th>
+							<th>订单编号</th>
+							<th>图书名称</th>
+							<th>订购人</th>
+							<th>作者</th>
+							<th>出版社</th>
+							<th>下单日期</th>
+							<th>条形码</th>
+							<th>数量</th>
+							<th>价格</th>
+							<th>总价格</th>
+							<th>审核意见</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="ob,stat : ${dataList}">
+							<td><input type="checkbox" id="bookId" name="bookId" th:value="${ob.bookId}" /></td>
+							<td th:text="${stat.count}">Bangalore</td>
+							<td th:text="${ob.bookName}">Bangalore</td>
+							<td th:text="${ob.userName}">Bangalore</td>
+							<td th:text="${ob.author}">Bangalore</td>
+							<td th:text="${ob.publish}">Bangalore</td>
+							<td th:text="${#dates.format(ob.orderTime, 'yyyy-MM-dd')}">2018-6-19</td>
+							<td><img class="imgBarCode" th:src="${ob.barcode}" /></td>
+							<td th:text="${ob.number}">560001</td>
+							<td th:text="${ob.price}">560001</td>
+							<td th:text="${ob.totalNumber}">560001</td>
+							<td>
+								<!-- 模态框 --><!-- th:onclick="'javascript:toView(\''+${stat.count}+'-1'+'-'+${ob.bookId}+'\');'" -->
+								<a href="#" class="btn btn-success btn-lg" role="button">已通过审核</a>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+		 </div>
+	</div>
+	<div th:replace="fragments/footer :: copyright"></div>
+  </div> 
+</body>
+</html>

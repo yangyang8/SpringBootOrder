@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<title>首页</title>
+	<meta charset="utf-8" />
+</head>
+<body>
+	<header th:fragment="header">
+		<!-- NAVBAR -->
+		<nav class="navbar navbar-default navbar-fixed-top">
+			<div class="brand">
+				<a th:href="@{/index.action}"><img th:src="@{/img/logo-dark.png}" class="img-responsive logo" /></a>                                                                        
+			</div>
+			<div class="container-fluid">
+				<div class="navbar-btn">
+					<button type="button" class="btn-toggle-fullwidth"><i class="lnr lnr-arrow-left-circle"></i></button>
+				</div>
+				<form class="navbar-form navbar-left">
+					<div class="input-group">
+						<input type="text" value="" class="form-control" placeholder="查询内容..." />
+						<span class="input-group-btn"><button type="button" class="btn btn-primary">查询</button></span>
+					</div>
+				</form>
+
+				<div id="navbar-menu">
+					<ul class="nav navbar-nav navbar-right">
+						<li class="dropdown">
+							<a href="#" class="dropdown-toggle icon-menu" data-toggle="dropdown">
+								<i class="lnr lnr-alarm"></i>
+								<span class="badge bg-danger">5</span><!--有5个消息 -->
+							</a>
+						</li>
+						<li class="dropdown">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="lnr lnr-question-circle"></i> <span>帮助</span> <i class="icon-submenu lnr lnr-chevron-down"></i></a>
+							<ul class="dropdown-menu">
+								<li><a href="#">基本使用方式</a></li>
+								<li><a href="#">工作日期</a></li>
+								<li><a href="#">安全</a></li>
+							</ul>
+						</li>
+					    <li class="dropdown"><!-- th:if="${obj !=null} ? ${obj.username}:''" -->
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown"><img th:src="@{/img/user.png}" class="img-circle"/> <span>杨海龙</span> <i class="icon-submenu lnr lnr-chevron-down"></i></a>
+							<ul class="dropdown-menu">
+								<li><a href="#"><i class="lnr lnr-user"></i> <span>个人信息</span></a></li>
+								<li><a href="#"><i class="lnr lnr-envelope"></i> <span>消息</span></a></li>
+								<li><a href="#"><i class="lnr lnr-cog"></i> <span>设置</span></a></li>
+								<li><a href="#"><i class="lnr lnr-exit"></i> <span>退出登录</span></a></li>
+							</ul>
+						</li> 
+					</ul>
+				</div>
+			</div>
+		</nav>
+	</header>
+</body>
+</html>

@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<title>首页</title>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+	<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"></link>  
+	<link rel="stylesheet" th:href="@{/css/style.css}" />
+	<link rel="stylesheet" th:href="@{/css/main.css}" />	
+	<link rel="stylesheet" th:href="@{/css/commons.css}" />
+	
+	<script type="text/javascript" th:src="@{/js/jquery-3.3.1.min.js}"></script>	
+	<script type="text/javascript" th:src="@{/js/bootstrap.min.js}" ></script>
+	<script type="text/javascript" th:src="@{/js/klorofil-common.js}" ></script>
+	<script type="text/javascript" th:src="@{/js/commons.js}"></script>
+	
+</head>
+
+<body>
+  <div th:fragment="navbar" id="wrapper" class="wrapper"  role="navigation">
+    <div th:replace="fragments/header :: header"></div>
+    <div th:replace="fragments/left :: left"></div>
+	
+	<div class="main">
+		 <!-- MAIN CONTENT -->
+		 <div class="main-content">
+		 
+				<table id="table" class="table table-bordered">
+				    <caption>
+				        <a th:href="@{/index.action}" class="btn btn-primary btn-lg" role="button">返回</a>
+				    	&nbsp;&nbsp;&nbsp;<a th:href="@{/OrderBook/exportOrderBook.action}" class="btn btn-primary btn-lg" role="button">导出</a>
+				    	&nbsp;&nbsp;&nbsp;<a href="" id="exportFinanceDepartment" class="btn btn-primary btn-lg" role="button">上报财务部</a>
+				    </caption>
+					<thead>
+						<tr>
+							<th><input type="checkbox" id="allCheck" /></th>
+							<th>订单编号</th>
+							<th>图书名称</th>
+							<th>订购人</th>
+							<th>作者</th>
+							<th>出版社</th>
+							<th>下单日期</th>
+							<th>条形码</th>
+							<th>数量</th>
+							<th>价格</th>
+							<th>总价格</th>
+							<th>审核意见</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="ob,stat : ${dataList}">
+							<td><input type="checkbox" id="bookId" name="bookId" th:value="${ob.bookId}" /></td>
+							<td th:text="${stat.count}">Bangalore</td>
+							<td th:text="${ob.bookName}">Bangalore</td>
+							<td th:text="${ob.userName}">Bangalore</td>
+							<td th:text="${ob.author}">Bangalore</td>
+							<td th:text="${ob.publish}">Bangalore</td>
+							<td th:text="${#dates.format(ob.orderTime, 'yyyy-MM-dd')}">2018-6-19</td>
+							<td><img class="imgBarCode" th:src="${ob.barcode}" /></td>
+							<td th:text="${ob.number}">560001</td>
+							<td th:text="${ob.price}">560001</td>
+							<td th:text="${ob.totalNumber}">560001</td>
+							<td>
+								<!-- 模态框 --><!-- th:onclick="'javascript:toView(\''+${stat.count}+'-1'+'-'+${ob.bookId}+'\');'" -->
+								<a href="#" class="btn btn-success btn-lg" role="button">已通过审核</a>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+		 </div>
+	</div>
+	<div th:replace="fragments/footer :: copyright"></div>
+  </div> 
+</body>
+</html>

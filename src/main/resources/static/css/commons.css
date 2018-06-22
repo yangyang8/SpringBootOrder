@@ -1,0 +1,18 @@
+@CHARSET "UTF-8";
+
+th{
+	text-align: center;
+	vertical-align: middle;
+}
+
+td{
+	/* align="center" valign="middle" */
+	text-align: center;
+	vertical-align: middle;
+	
+}
+
+.imgBarCode{
+	width: 200px;
+	height: 40px;
+}
